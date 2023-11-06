@@ -41,14 +41,14 @@
     },
     "revision_selector": {
       "languages_count": "{count, plural, =1 {1 other language} other {# other languages}}",
-      "master": "master"
+      "master": "main"
     },
     "translation_comments_subscriptions": {
       "title": "Notify on new messages"
     },
     "login_header": {
       "text": "Login",
-      "subtext": "Only your email address, fullname and profile picture will be used for your Accent profile.",
+      "subtext": "Only your email address, full name and profile picture will be used for your Accent profile.",
       "subtitle": "Your reliable, <em>simple</em>, developer-oriented translation tool",
       "footer_open_source_link": "100% open-source",
       "footer_mirego_link": "Mirego",
@@ -92,7 +92,7 @@
     "commit_file": {
       "cancel_button": "Cancel",
       "file_input_button": "Choose a file",
-      "commit_error": "An error occured while uploading the file",
+      "commit_error": "An error occurred while uploading the file",
       "document_format": "Format of the file",
       "document_path": "Name of the file",
       "version_tag": "Version",
@@ -105,7 +105,7 @@
       "new_document_warning": "The changes will create a new file.",
       "existing_document_warning": "The changes will be applied to the already existing file.",
       "peek_button": "Preview sync",
-      "peek_error": "An error occured while previewing the file",
+      "peek_error": "An error occurred while previewing the file",
       "peek_help": "This action will have no effects on your project.",
       "sync_button": "Sync",
       "upload_help": "After choosing a file you will be able to preview the changes on your project",
@@ -115,7 +115,7 @@
       "instructions": {
         "sync": {
           "title": "Sync",
-          "text": "Update the list of strings in Accent, removing ones missing in the file and adding new ones.<em>The sync is always done in the master language.</em>New strings and removed strings changes will be reflected in all translated languages."
+          "text": "Update the list of strings in Accent, removing ones missing in the file and adding new ones.<em>The sync is always done in the main language.</em>New strings and removed strings changes will be reflected in all translated languages."
         },
         "merge": {
           "title": "Add translations",
@@ -124,8 +124,8 @@
         "mistakes": {
           "title": "Common mistakes",
           "item_1": "Export Accent files locally before a sync. This will force you to resolve conflicts locally and potentially override reviewed texts or adding removed strings.",
-          "item_2": "Sync a translated language (not your master language). This will effectively generates conflicts for all your keys, changing the text of the master language for your translated language.",
-          "item_3": "Sync one file per language. The purpose of the \"file\" in Accent is to be translated in X languages. Sync your master language and let the translated languages be translated in the UI."
+          "item_2": "Sync a translated language (not your main language). This will effectively generates conflicts for all your keys, changing the text of the main language for your translated language.",
+          "item_3": "Sync one file per language. The purpose of the \"file\" in Accent is to be translated in X languages. Sync your main language and let the translated languages be translated in the UI."
         }
       }
     },
@@ -151,7 +151,7 @@
       "correct_all_button": "Mark all strings as reviewed for this language",
       "no_translations": "No strings to review for: {query}",
       "all_reviewed_title": "All reviewed",
-      "all_reviewed_subtitle": "Every strings have been marked as reviewed"
+      "all_reviewed_subtitle": "All strings have been marked as reviewed"
     },
     "dashboard_master_revision": {
       "features": {
@@ -178,7 +178,7 @@
       },
       "keys": "strings",
       "last_synced_at_label": "Last sync:",
-      "master_language_label": "Master language is:",
+      "master_language_label": "Main language is:",
       "never_synced": "Sync the project for the first time",
       "reviewed": "reviewed"
     },
@@ -191,10 +191,10 @@
       "last_synced_at_label": "Last sync:",
       "manage_languages_link_title": "Manage languages",
       "new_language_link_title": "New language",
-      "new_language_link_text": "With another language, you can keep track of translation based on the master language.",
+      "new_language_link_text": "With another language, you can keep track of translation based on the main language.",
       "view_more_activities": "View more activities →",
       "title": "Dashboard",
-      "master": "Master language",
+      "master": "Main language",
       "slaves": "Translations",
       "sync": "Sync",
       "strings": "strings",
@@ -216,7 +216,7 @@
       "update": "Edit"
     },
     "documents_list": {
-      "empty_text": "Files are the actual listing of your project’s master language files. Add them here or from the CLI and keep them in sync with your project.",
+      "empty_text": "Files are the actual listing of your project’s main language files. Add them here or from the CLI and keep them in sync with your project.",
       "export_all": "Export all",
       "show_deleted": "Show deleted",
       "hide_deleted": "Hide deleted",
@@ -306,7 +306,7 @@
         "create_version": "When a user freeze the state of all strings to tag it with a version. Used to maintain multiple versions of the same app in parallel.",
         "conflict_on_corrected": "When the uploaded text is different than the last synced text and the last synced text is different than the current text. This happens if the text has been touched by a user in Accent. It is uselful to identify a conflict that is caused by a difference in a sync and the modified version in Accent.",
         "conflict_on_proposed": "When the uploaded text is different than the last uploaded text and the last synced text is equal to the current text. This happens if the text has not been touched by a user in Accent. It is uselful to identify a conflict that is only caused by a sync and not a human intervention.",
-        "conflict_on_slave": "When the activity \"conflict on proposed\" or \"conflict on corrected\" happens on a string, the matching keys in other languages apply this activity. The goal of this activity is to flag a change of meaning in the master language in the translations. The string will be flagged as \"in review\"",
+        "conflict_on_slave": "When the activity \"conflict on proposed\" or \"conflict on corrected\" happens on a string, the matching keys in other languages apply this activity. The goal of this activity is to flag a change of meaning in the main language in the translations. The string will be flagged as \"in review\"",
         "correct_all": "When all the strings are manually marked as reviewed.",
         "correct_conflict": "When a string is manually marked as reviewed.",
         "batch_correct_conflict": "When multiple strings were marked as reviewed in a short lapse of time.",
@@ -382,26 +382,26 @@
         "manage_languages": "Manage languages",
         "manage_languages_text": "Add/remove languages translated in the project",
         "jipt": "Just In Place Translations",
-        "jipt_text": "Live translation on any applications, with builtin Javascript library",
+        "jipt_text": "Live translation on any applications, with built-in JavaScript library",
         "machine_translations": "Machine translations",
         "machine_translations_text": "Configure an external service to translate languages automatically",
         "prompts": "AI Assistant",
-        "prompts_text": "Configure your assistant to help you writing, improving, correcting your text"
+        "prompts_text": "Configure your assistant to help write, improve or correct your strings"
       },
       "machine_translations": {
         "title": "Machine translations",
         "text": "Add a valid configuration to enable translating directly in the Review page. You can also translate your project’s file as well as arbirtary files that you upload on Accent.",
         "enabled_actions_sync": "Automatically run on project sync",
         "use_platform_label": "Use the platform config if available",
-        "config_key_help_present": "Config key has been set but the value will never be exposed via the API.",
+        "config_key_help_present": "Config key has been set, but the value will never be exposed via the API.",
         "config_key_help_not_present": "Once saved, the config key will never be shown.",
         "config_key_placeholder": "Paste the config key here…"
       },
       "prompts": {
         "title": "AI Assistant",
-        "help": "Instructions will be available on every string inputs to help you improve your content. The clearer the instructions you give to the assistant, to better the output will be.",
+        "help": "Instructions will be available on all string inputs to help you improve your content. The clearer the instructions you give to the assistant, to better the output will be.",
         "new_button": "Add a new instruction",
-        "config_key_help_present": "Config key has been set but the value will never be exposed via the API.",
+        "config_key_help_present": "Config key has been set, but the value will never be exposed via the API.",
         "config_key_help_not_present": "Once saved, the config key will never be shown.",
         "delete_confirm": "Are you sure you want to delete this instruction?"
       },
@@ -429,7 +429,7 @@
         "script_title": "Add the script at the root of your app",
         "add_language_title": "Add the pseudo language to your project",
         "add_language_image_1": "Here is a language like you already have in your project:",
-        "add_language_image_2": "Here is the pseudo language named \"accent\" that act as a normal translsation in your project:",
+        "add_language_image_2": "Here is the pseudo language named \"accent\" that act as a normal translation in your project:",
         "use_language_title": "Use the pseudo language",
         "pseudo_language_text": "The Accent script parses the DOM for strings that match the Just In Place Translations export. Go in the \"Files\" section to export the file or use the CLI to add the pseudo language to your project.",
         "use_language_text": "By switching to the Accent language using your favorite framework i18n tool, the page will display the strings in the pseudo language files and the Accent script will replace those by the strings in Accent. It will also bind click event on the elements so that you can select strings directly in your app and edit them via Accent."
@@ -515,7 +515,7 @@
       "actions": {
         "conflict_on_corrected": "Conflict on corrected",
         "conflict_on_proposed": "Conflict on proposed",
-        "conflict_on_slave": "Conflict on slave",
+        "conflict_on_slave": "Conflict on translation",
         "correct_all": "Correct all",
         "correct_conflict": "Correct conflict",
         "batch_correct_conflict": "Correct conflicts",
@@ -610,7 +610,7 @@
       "title": "New project",
       "error": "Invalid project",
       "cancel_button": "Cancel",
-      "language_label": "Master language:",
+      "language_label": "Main language:",
       "language_search_placeholder": "Search…",
       "name_label": "Name:",
       "save_button": "Create"
@@ -700,12 +700,12 @@
     "project_manage_languages": {
       "create_error": "Language can not be added right now. Try again later.",
       "conflicts_explain_title": "On conflicts",
-      "conflicts_explain_text": "Every string addition or deletion will be reflected in the language. When a text changes in the master revision, the string in the language will be marked as in review.",
+      "conflicts_explain_text": "All string addition or deletion will be reflected in the language. When a text changes in the main revision, the string in the language will be marked as in review.",
       "sync_explain_title": "On sync",
-      "sync_explain_text": "The master language will be the default source when syncing a file. The other languages are never \"synced\", they just follow the master language.",
+      "sync_explain_text": "The main language will be the default source when syncing a file. The other languages are never \"synced\", they just follow the main language.",
       "add_translations_explain_title": "On add translations",
-      "add_translations_explain_text": "Every languages can have strings \"merged\" into it by adding translations. Conflict resolution will work the same but will never add or remove strings.",
-      "main_text": "You can add a new language that will follow the master language.",
+      "add_translations_explain_text": "All languages can have strings \"merged\" into it by adding translations. Conflict resolution will work the same but will never add or remove strings.",
+      "main_text": "You can add a new language that will follow the main language.",
       "title": "Manage languages"
     },
     "projects_filters": {
@@ -727,7 +727,7 @@
     "related_translations_list": {
       "comments_label": "{count, plural, =0 {No comments} =1 {1 comment} other {# comments}}",
       "conflicted_label": "in review",
-      "master_label": "master",
+      "master_label": "main",
       "save_button": "Save",
       "last_updated_label": "Last updated:",
       "new_language_link": "New language",
@@ -746,15 +746,15 @@
       "list_languages": "Languages:",
       "revision_inserted_at_label": "Created",
       "revision_deleted_label": "The language is currently being removed from your project. It will automatically disappear once all operations are propagated in the system.",
-      "master_badge": "master",
+      "master_badge": "main",
       "delete_revision_confirm": "Are you sure you want to remove this language from your project? This action cannot be rollbacked.",
       "delete_revision_button": "Remove this language",
-      "promote_revision_master_confirm": "Are you sure you want to use this language as the master language from your project?",
-      "promote_revision_master_button": "Use as master"
+      "promote_revision_master_confirm": "Are you sure you want to use this language as the main language from your project?",
+      "promote_revision_master_button": "Use as main"
     },
     "revision_export_options": {
       "default_format": "Default format",
-      "default_version": "Default version",
+      "default_version": "Latest version",
       "orders": {
         "az": "Alphabetical order",
         "original": "Original order"
@@ -844,16 +844,30 @@
       "lint_message": {
         "arrow": "→",
         "replace": "Replace",
+        "title_checks": {
+          "all": "All",
+          "PLACEHOLDER_COUNT": "Placeholders count",
+          "TRAILING_SPACE": "Trailing space",
+          "LEADING_SPACES": "Leading spaces",
+          "DOUBLE_SPACES": "Double spaces",
+          "APOSTROPHE_AS_SINGLE_QUOTE": "Single quote to apostrophe",
+          "FIRST_LETTER_CASE": "First letter mismatch",
+          "THREE_DOTS_ELLIPSIS": "Three dots to ellipsis",
+          "SAME_TRAILING_CHARACTER": "Trailing character mismatch",
+          "SPELLING": "Spelling",
+          "URL_COUNT": "URLs count"
+        },
         "checks": {
-          "PLACEHOLDER_COUNT": "Number of placeholders does not match the master string",
+          "PLACEHOLDER_COUNT": "Number of placeholders does not match the main string",
           "TRAILING_SPACE": "String contains a trailing space",
           "LEADING_SPACES": "String contains leading spaces",
           "DOUBLE_SPACES": "String contains double spaces",
           "APOSTROPHE_AS_SINGLE_QUOTE": "A single quote as been used instead of an apostrophe",
-          "FIRST_LETTER_CASE": "First letter of translation does not match case of the master’s",
+          "SPELLING": "String contains a spelling mistake",
+          "FIRST_LETTER_CASE": "First letter of translation does not match case of the main’s",
           "THREE_DOTS_ELLIPSIS": "String contains three dots instead of ellipsis",
-          "SAME_TRAILING_CHARACTER": "String does not match the trailing character of master",
-          "URL_COUNT": "Number of URL does not match the master string"
+          "SAME_TRAILING_CHARACTER": "String does not match the trailing character of main",
+          "URL_COUNT": "Number of URL does not match the main string"
         }
       }
     },
@@ -867,7 +881,7 @@
     "translation_splash_title": {
       "plural_label": "plural",
       "conflicted_label": "in review",
-      "master_label": "master",
+      "master_label": "main",
       "last_updated_label": "Last updated:",
       "removed_label": "This string was removed {removedAt}"
     },
@@ -910,7 +924,7 @@
       "sync_file": "Sync a new file",
       "sync_file_text": "Add strings from multiple file formats to review them",
       "manage_languages": "Add languages",
-      "manage_languages_text": "Target languages follow your master language strings and conflicts",
+      "manage_languages_text": "Target languages follow your main language strings and conflicts",
       "add_collaborator": "Add collaborator",
       "add_collaborator_text": "Translators, developers, etc.",
       "api_token": "Get an API Token",
@@ -1003,9 +1017,9 @@
         "loading_content": "Fetching dashboard…",
         "flash_messages": {
           "revision_correct_success": "All strings in the language have been marked as reviewed",
-          "revision_correct_error": "An error has occured when marking all the strings in that language as reviewed",
+          "revision_correct_error": "An error has occurred when marking all the strings in that language as reviewed",
           "revision_uncorrect_success": "All strings in the language have been marked to be reviewed",
-          "revision_uncorrect_error": "An error has occured when marking all the strings in that language to be reviewed"
+          "revision_uncorrect_error": "An error has occurred when marking all the strings in that language to be reviewed"
         }
       },
       "activities": {
@@ -1025,7 +1039,7 @@
         "loading_content": "Searching the strings in review…",
         "flash_messages": {
           "revision_correct_success": "All strings in the language have been marked as reviewed",
-          "revision_correct_error": "An error has occured when marking all the strings in that language as reviewed",
+          "revision_correct_error": "An error has occurred when marking all the strings in that language as reviewed",
           "translate_provider_error": "The string could not be translated by: {provider}",
           "translate_error": {
             "unsupported_target": "The string could not be translated: Unsupported target {target}",
@@ -1118,8 +1132,8 @@
           "add_revision_success": "The new language has been created with success",
           "delete_revision_failure": "The language could not be deleted",
           "delete_revision_success": "The language has been deleted with success",
-          "promote_master_revision_failure": "The language could not be promoted as master",
-          "promote_master_revision_success": "The language has been promoted as master with success"
+          "promote_master_revision_failure": "The language could not be promoted as main",
+          "promote_master_revision_success": "The language has been promoted as main with success"
         }
       },
       "comments": {

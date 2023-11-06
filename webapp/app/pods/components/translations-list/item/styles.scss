@@ -2,8 +2,8 @@
   transition: 0.2s ease-in-out;
   transition-property: background, transform;
   display: block;
-  margin: 8px 0 4px;
-  padding: 10px;
+  margin: 0;
+  padding: 4px 10px;
   border: 1px solid transparent;
   border-radius: var(--border-radius);
 
@@ -12,17 +12,21 @@
     background: var(--background-light);
 
     .item-edit {
-      transform: translateX(-45px);
+      transform: translateX(-40px);
       opacity: 1;
+    }
+
+    .item-updatedAt {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 
   &.item--editMode {
     background: var(--background-light);
-    transform: scale(1.02);
 
     .item-edit {
-      transform: translateX(-50px);
+      transform: translateX(-40px);
       opacity: 1;
     }
 
@@ -49,7 +53,6 @@
 .item-header {
   position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
   margin-bottom: 1px;
@@ -66,8 +69,8 @@
 }
 
 .item-edit-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   cursor: pointer;
   stroke: var(--color-grey);
   transition: 0.2s ease-in-out;
@@ -84,19 +87,27 @@
   display: block;
   font-size: 11px;
   color: #959595;
+  flex-shrink: 0;
   font-weight: 300;
+
+  &::before {
+    content: '/';
+    margin-right: -5px;
+  }
 }
 
 .item-key {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 2px;
   transition: 0.2s ease-in-out;
   transition-property: color;
-  margin-right: 15px;
+  margin-right: 10px;
   color: var(--color-primary);
   line-height: 1.5;
   word-break: break-all;
   font-family: var(--font-monospace);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
 }
 
@@ -110,7 +121,7 @@
   width: 100%;
   font-size: 13px;
   color: var(--color-black);
-  padding: 6px 0;
+  padding: 2px 0;
   cursor: text;
   white-space: pre-wrap;
   transition: 0.2s ease-in-out;
@@ -135,9 +146,13 @@
 }
 
 .item-updatedAt {
+  opacity: 0;
+  transform: translateX(-10px);
   margin-left: 5px;
   color: var(--color-grey);
   font-size: 11px;
+  transition: 0.2s ease-in-out;
+  transition-property: opacity, transform;
 }
 
 .item-textEdit {

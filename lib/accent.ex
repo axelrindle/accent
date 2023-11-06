@@ -10,6 +10,7 @@ defmodule Accent do
       Accent.Repo,
       {Oban, oban_config()},
       Accent.Vault,
+      {LanguageTool.Server, language_tool_config()},
       {TelemetryUI, Accent.TelemetryUI.config()},
       {Phoenix.PubSub, [name: Accent.PubSub, adapter: Phoenix.PubSub.PG2]}
     ]
@@ -31,6 +32,13 @@ defmodule Accent do
   def config_change(changed, _new, removed) do
     Accent.Endpoint.config_change(changed, removed)
     :ok
+  end
+
+  defp language_tool_config do
+    [
+      languages: Application.get_env(:accent, LanguageTool)[:languages],
+      disabled_rule_ids: ~w(UPPERCASE_SENTENCE_START POINTS_2 FRENCH_WHITESPACE DETERMINER_SENT_END)
+    ]
   end
 
   defp oban_config do

@@ -37,6 +37,7 @@ config :accent, Accent.Repo,
   queue_interval: get_env("DATABASE_QUEUE_INTERVAL", :integer) || 2000,
   pool_size: get_env("DATABASE_POOL_SIZE", :integer),
   ssl: get_env("DATABASE_SSL", :boolean),
+  ssl_opts: [verify: :verify_none],
   url: get_env("DATABASE_URL") || "postgres://localhost/accent_development",
   socket_options: if(ecto_ipv6?, do: [:inet6], else: [])
 
@@ -45,6 +46,8 @@ config :accent, Accent.MachineTranslations,
     "google_translate" => %{"key" => get_env("GOOGLE_TRANSLATIONS_SERVICE_ACCOUNT_KEY")},
     "deepl" => %{"key" => get_env("DEEPL_TRANSLATIONS_KEY")}
   }
+
+config :accent, LanguageTool, languages: get_env("LANGUAGE_TOOL_LANGUAGES", :comma_separated_list)
 
 providers = []
 
@@ -129,26 +132,20 @@ config :accent, Accent.WebappView,
   sentry_dsn: get_env("WEBAPP_SENTRY_DSN") || "",
   skip_subresource_integrity: get_env("WEBAPP_SKIP_SUBRESOURCE_INTEGRITY", :boolean)
 
-if get_env("GOOGLE_TRANSLATIONS_SERVICE_ACCOUNT_KEY") do
-  config :goth, json: get_env("GOOGLE_TRANSLATIONS_SERVICE_ACCOUNT_KEY")
-else
-  config :goth, disabled: true
-end
-
 config :tesla, logger_enabled: true
 
 config :new_relic_agent,
   app_name: get_env("NEW_RELIC_APP_NAME"),
   license_key: get_env("NEW_RELIC_LICENSE_KEY")
 
-if !get_env("SENTRY_DSN") do
-  config :sentry, included_environments: []
-else
+if get_env("SENTRY_DSN") do
   config :sentry,
     dsn: get_env("SENTRY_DSN"),
     environment_name: get_env("SENTRY_ENVIRONMENT_NAME"),
     included_environments: ~w(dev prod production),
     root_source_code_path: File.cwd!()
+else
+  config :sentry, included_environments: []
 end
 
 config :accent, Accent.Mailer,

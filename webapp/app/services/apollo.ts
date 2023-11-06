@@ -37,7 +37,7 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 
 const uri = '/graphql';
 const cache = new InMemoryCache({dataIdFromObject, fragmentMatcher});
-const link = new BatchHttpLink({uri, batchInterval: 50, batchMax: 50});
+const link = new BatchHttpLink({uri, batchInterval: 1, batchMax: 1});
 
 const absintheBatchLink = new ApolloLink((operation, forward) => {
   return forward(operation).map((response: any) => response.payload);

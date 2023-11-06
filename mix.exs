@@ -1,13 +1,13 @@
 defmodule Accent.Mixfile do
   use Mix.Project
 
-  @version "1.18.4"
+  @version "1.19.4"
 
   def project do
     [
       app: :accent,
       version: @version,
-      elixir: "~> 1.14",
+      elixir: "~> 1.15",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: Mix.compilers(),
       build_embedded: Mix.env() == :prod,
@@ -46,7 +46,7 @@ defmodule Accent.Mixfile do
       {:corsica, "~> 2.0"},
       {:plug_cowboy, "~> 2.0"},
       {:cowboy, "~> 2.0"},
-      {:plug, "~> 1.10"},
+      {:plug, "1.14.2"},
       {:plug_canonical_host, "~> 2.0"},
 
       # Database
@@ -55,6 +55,9 @@ defmodule Accent.Mixfile do
       {:ecto_dev_logger, "~> 0.4"},
       {:postgrex, "~> 0.14"},
       {:cloak_ecto, "~> 1.2"},
+
+      # Spelling interop with Java runtime
+      {:exile, "~> 0.7"},
 
       # Phoenix data helpers
       {:phoenix_ecto, "~> 4.0"},
@@ -109,7 +112,7 @@ defmodule Accent.Mixfile do
       {:mock, "~> 0.3.0", only: :test},
 
       # Google API authentication
-      {:goth, "~> 1.2.0"},
+      {:goth, "~> 1.4"},
 
       # Network request
       {:tesla, "~> 1.3"},

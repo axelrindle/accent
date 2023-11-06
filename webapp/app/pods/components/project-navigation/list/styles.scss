@@ -8,9 +8,8 @@
 .section {
   display: flex;
   flex-direction: column;
-  margin: 10px 0;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--background-light);
+  margin: 6px 0;
+  padding-bottom: 4px;
 }
 
 .section-title {
@@ -22,7 +21,7 @@
   font-weight: 500;
   font-size: 12px;
   color: var(--color-grey);
-  opacity: 0.7;
+  opacity: 0.9;
   width: 100%;
 }
 
@@ -44,7 +43,7 @@
   font-weight: 600;
   font-size: 14px;
   border-radius: var(--border-radius);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   color: var(--text-color-normal);
 
   &:hover,
@@ -75,18 +74,18 @@
 }
 
 .list-item-link-text {
-  width: 127px;
-  padding: 0 0 0 10px;
-  opacity: 0.7;
+  padding: 0 0 0 7px;
+  opacity: 0.9;
+  letter-spacing: -0.4px;
 }
 
 .list-item-link-icon {
   transition: 0.2s ease-in-out;
   transition-property: fill, opacity;
   display: inline-block;
-  width: 15px;
-  height: 15px;
-  opacity: 0.4;
+  height: 13px;
+  width: 13px;
+  opacity: 0.9;
 }
 
 @media (max-width: 800px) {

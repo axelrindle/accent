@@ -1,9 +1,16 @@
 defmodule Accent.Lint.Checks.URLCount do
   @moduledoc false
+  @behaviour Accent.Lint.Check
+
   alias Accent.Lint.Message
 
-  def applicable(entry), do: not entry.is_master and is_binary(entry.master_value)
+  @impl true
+  def enabled?, do: true
 
+  @impl true
+  def applicable(entry), do: is_binary(entry.value) and not entry.is_master and is_binary(entry.master_value)
+
+  @impl true
   def check(entry) do
     master_url_count = urls_count(entry.master_value)
     value_url_count = urls_count(entry.value)

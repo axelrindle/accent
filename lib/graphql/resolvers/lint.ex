@@ -11,7 +11,8 @@ defmodule Accent.GraphQL.Resolvers.Lint do
 
   require Ecto.Query
 
-  @spec lint_translation(Translation.t(), map(), GraphQLContext.t()) :: {:ok, Paginated.t(Language.Entry.t())}
+  @spec lint_translation(Translation.t(), map(), GraphQLContext.t()) ::
+          {:ok, Paginated.t(Language.Entry.t())}
   def lint_translation(translation, args, resolution) do
     batch({__MODULE__, :preload_translations}, translation, fn batch_results ->
       translation = Map.get(batch_results, translation.id)
@@ -37,7 +38,7 @@ defmodule Accent.GraphQL.Resolvers.Lint do
   end
 
   def preload_translations(_, [translation | _] = translations) do
-    translations = Repo.preload(translations, revision: :language)
+    translations = Repo.preload(translations, [:document, [revision: :language]])
 
     project =
       translation
@@ -54,12 +55,15 @@ defmodule Accent.GraphQL.Resolvers.Lint do
       Accent.Translation
       |> TranslationScope.from_project(project.id)
       |> TranslationScope.from_revision(master_revision.id)
+      |> TranslationScope.from_version(translation.version_id)
       |> TranslationScope.active()
       |> Repo.all()
       |> Map.new(&{{&1.key, &1.document_id}, &1})
 
     Enum.reduce(translations, %{}, fn translation, acc ->
-      master_translation = Map.get(master_translations, {translation.key, translation.document_id})
+      master_translation =
+        Map.get(master_translations, {translation.key, translation.document_id})
+
       Map.put(acc, translation.id, %{translation | master_translation: master_translation})
     end)
   end

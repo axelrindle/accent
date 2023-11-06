@@ -39,7 +39,7 @@ defmodule Accent.TranslationsRenderer do
   end
 
   defp translations_to_entries(translations, master_translations, value_map) do
-    master_translations = Enum.group_by(master_translations || [], & &1.key)
+    master_translations = Enum.group_by(List.wrap(master_translations), & &1.key)
 
     Enum.map(translations, fn translation ->
       master_translation = Map.get(master_translations, translation.key)
@@ -50,7 +50,10 @@ defmodule Accent.TranslationsRenderer do
         value: value_map.(translation),
         comment: translation.file_comment,
         index: translation.file_index,
-        value_type: translation.value_type
+        value_type: translation.value_type,
+        plural: translation.plural,
+        placeholders: translation.placeholders,
+        locked: translation.locked
       }
     end)
   end

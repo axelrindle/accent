@@ -18,7 +18,7 @@ const markdown = MarkdownIt({
   typographer: true,
 });
 
-const DEBOUNCE_LINT_MESSAGES = 1000;
+const DEBOUNCE_LINT_MESSAGES = 800;
 
 interface Args {
   projectId: string;
@@ -49,7 +49,10 @@ export default class TranslationEditForm extends Component<Args> {
   apollo: Apollo;
 
   @tracked
-  lintMessages = this.args.lintMessages;
+  lintTranslation = {
+    translation: {id: this.args.translationId, text: this.args.value},
+    messages: this.args.lintMessages,
+  };
 
   @tracked
   showTypeHints = true;
@@ -120,13 +123,13 @@ export default class TranslationEditForm extends Component<Args> {
     _element: HTMLElement,
     [value]: string[]
   ): TaskGenerator<void> {
+    yield timeout(DEBOUNCE_LINT_MESSAGES);
+
     yield perform(this.fetchLintMessagesTask, value);
   }
 
   @restartableTask
   *fetchLintMessagesTask(value: string) {
-    yield timeout(DEBOUNCE_LINT_MESSAGES);
-
     const {data} = yield this.apollo.client.query({
       fetchPolicy: 'network-only',
       query: translationLintQuery,
@@ -137,7 +140,9 @@ export default class TranslationEditForm extends Component<Args> {
       },
     });
 
-    this.lintMessages = data.viewer.project.translation.lintMessages;
+    this.lintTranslation = Object.assign(this.lintTranslation, {
+      messages: data.viewer.project.translation.lintMessages,
+    });
   }
 
   @action
