@@ -27,12 +27,11 @@ export default gql`
             }
           }
 
-          ... on ProjectIntegrationGitHub {
+          ... on ProjectIntegrationAzureStorageContainer {
+            lastExecutedAt
             data {
               id
-              repository
-              token
-              defaultRef
+              sasBaseUrl
             }
           }
         }

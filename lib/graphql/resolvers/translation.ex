@@ -52,9 +52,10 @@ defmodule Accent.GraphQL.Resolvers.Translation do
   end
 
   @spec uncorrect(Translation.t(), map(), GraphQLContext.t()) :: translation_operation
-  def uncorrect(translation, _, info) do
+  def uncorrect(translation, %{text: text}, info) do
     %Context{}
     |> Context.assign(:translation, translation)
+    |> Context.assign(:text, text)
     |> Context.assign(:user_id, info.context[:conn].assigns[:current_user].id)
     |> TranslationUncorrectConflictBuilder.build()
     |> then(&fn -> BasePersister.execute(&1) end)
@@ -140,6 +141,16 @@ defmodule Accent.GraphQL.Resolvers.Translation do
     {:ok, translations}
   end
 
+  @spec editions(Translation.t(), map(), struct()) :: {:ok, [Translation.t()]}
+  def editions(translation, _, _) do
+    translations =
+      Translation
+      |> TranslationScope.editions(translation)
+      |> Repo.all()
+
+    {:ok, translations}
+  end
+
   @spec master_translation(Translation.t(), map(), struct()) :: {:ok, Translation.t() | nil}
   def master_translation(translation, _, _) do
     translation
@@ -176,6 +187,7 @@ defmodule Accent.GraphQL.Resolvers.Translation do
     |> TranslationScope.from_document(args[:document] || :all)
     |> TranslationScope.parse_order(args[:order])
     |> TranslationScope.parse_conflicted(args[:is_conflicted])
+    |> TranslationScope.parse_translated(args[:is_translated])
     |> TranslationScope.parse_added_last_sync(args[:is_added_last_sync], project_id, args[:document])
     |> TranslationScope.parse_not_empty(args[:is_text_not_empty])
     |> TranslationScope.parse_empty(args[:is_text_empty])

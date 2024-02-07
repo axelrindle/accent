@@ -55,12 +55,10 @@ defmodule AccentTest.GraphQL.Requests.ProjectIntegrations do
 
   test "create integration successfully", %{user: user, project: project, create_mutation: mutation} do
     variables = %{
-      "service" => "GITHUB",
+      "service" => "SLACK",
       "projectId" => project.id,
       "data" => %{
-        "repository" => "foo/bar",
-        "token" => "1234",
-        "defaultRef" => "master"
+        "url" => "https://slack.com/hook?token=foo"
       }
     }
 
@@ -79,12 +77,10 @@ defmodule AccentTest.GraphQL.Requests.ProjectIntegrations do
 
   test "create integration with errors", %{user: user, project: project, create_mutation: mutation} do
     variables = %{
-      "service" => "GITHUB",
+      "service" => "SLACK",
       "projectId" => project.id,
       "data" => %{
-        "repository" => "",
-        "token" => "",
-        "defaultRef" => ""
+        "url" => ""
       }
     }
 
@@ -99,10 +95,10 @@ defmodule AccentTest.GraphQL.Requests.ProjectIntegrations do
     assert Repo.all(Integration) == []
     assert get_in(data, [:data, "createProjectIntegration", "successful"]) === false
 
-    assert get_in(data, [:data, "createProjectIntegration", "messages"]) === [
-             %{"code" => "required", "field" => "data.defaultRef"},
-             %{"code" => "required", "field" => "data.repository"},
-             %{"code" => "required", "field" => "data.token"}
-           ]
+    validation_messages = get_in(data, [:data, "createProjectIntegration", "messages"])
+
+    assert length(validation_messages) === 1
+
+    assert %{"code" => "required", "field" => "data.url"} in validation_messages
   end
 end

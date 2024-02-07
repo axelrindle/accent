@@ -37,6 +37,7 @@ defmodule Accent.GraphQL.Types.Translation do
     field(:corrected_text, :string)
     field(:conflicted_text, :string)
     field(:is_conflicted, non_null(:boolean), resolve: field_alias(:conflicted))
+    field(:is_translated, non_null(:boolean), resolve: field_alias(:translated))
     field(:is_removed, non_null(:boolean), resolve: field_alias(:removed))
     field(:related_translation, :translation)
     field(:comments_count, non_null(:integer))
@@ -95,10 +96,19 @@ defmodule Accent.GraphQL.Types.Translation do
       )
     end
 
+    field :editions, list_of(:translation) do
+      resolve(
+        translation_authorize(
+          :index_translation_editions,
+          &Accent.GraphQL.Resolvers.Translation.editions/3
+        )
+      )
+    end
+
     field :related_translations, list_of(:translation) do
       resolve(
         translation_authorize(
-          :index_translation_activities,
+          :index_translation_related,
           &Accent.GraphQL.Resolvers.Translation.related_translations/3
         )
       )

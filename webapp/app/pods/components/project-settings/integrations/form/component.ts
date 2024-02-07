@@ -6,27 +6,27 @@ import IntlService from 'ember-intl/services/intl';
 import {tracked} from '@glimmer/tracking';
 
 const LOGOS = {
+  AZURE_STORAGE_CONTAINER: 'assets/services/azure.svg',
   DISCORD: 'assets/services/discord.svg',
   GITHUB: 'assets/services/github.svg',
   SLACK: 'assets/services/slack.svg',
 };
 
 interface Args {
+  selectedServiceValue: string;
   project: any;
   onSubmit: ({
     service,
     events,
     integration,
-    data: {url, repository, token, defaultRef},
+    data: {url, azureStorageContainerSas},
   }: {
     service: any;
     events: any;
     integration: any;
     data: {
       url: string;
-      repository: string;
-      token: string;
-      defaultRef: string;
+      azureStorageContainerSas: string;
     };
   }) => Promise<{errors: any}>;
   onCancel: () => void;
@@ -57,15 +57,12 @@ export default class IntegrationsForm extends Component<Args> {
   events: string[];
 
   @tracked
-  repository: string;
+  azureStorageContainerSas: string;
 
   @tracked
-  token: string;
+  azureStorageContainerSasBaseUrl: string;
 
-  @tracked
-  defaultRef = 'main';
-
-  services = ['SLACK', 'GITHUB', 'DISCORD'];
+  services = ['AZURE_STORAGE_CONTAINER', 'SLACK', 'DISCORD'];
 
   @not('url')
   emptyUrl: boolean;
@@ -100,23 +97,18 @@ export default class IntegrationsForm extends Component<Args> {
     } else {
       this.integration = {
         newRecord: true,
-        service: this.services[0],
+        service: this.args.selectedServiceValue || this.services[0],
         events: [],
         data: {
           url: this.url,
-          repository: this.repository,
-          token: this.token,
-          defaultRef: this.defaultRef,
         },
       };
     }
 
-    this.service = this.integration.service || this.services[0];
+    this.service = this.integration.service;
     this.url = this.integration.data.url;
     this.events = this.integration.events;
-    this.repository = this.integration.data.repository;
-    this.token = this.integration.data.token;
-    this.defaultRef = this.integration.data.defaultRef;
+    this.azureStorageContainerSasBaseUrl = this.integration.data.sasBaseUrl;
   }
 
   @action
@@ -140,18 +132,8 @@ export default class IntegrationsForm extends Component<Args> {
   }
 
   @action
-  setRepository(repository: string) {
-    this.repository = repository;
-  }
-
-  @action
-  setToken(token: string) {
-    this.token = token;
-  }
-
-  @action
-  setDefaultRef(defaultRef: string) {
-    this.defaultRef = defaultRef;
+  setAzureStorageContainerSas(sas: string) {
+    this.azureStorageContainerSas = sas;
   }
 
   @action
@@ -164,9 +146,7 @@ export default class IntegrationsForm extends Component<Args> {
       integration: this.integration.newRecord ? null : this.integration,
       data: {
         url: this.url,
-        repository: this.repository,
-        token: this.token,
-        defaultRef: this.defaultRef,
+        azureStorageContainerSas: this.azureStorageContainerSas,
       },
     });
 

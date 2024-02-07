@@ -1,7 +1,7 @@
 defmodule Accent.Mixfile do
   use Mix.Project
 
-  @version "1.19.4"
+  @version "1.19.12"
 
   def project do
     [
@@ -41,12 +41,12 @@ defmodule Accent.Mixfile do
       {:phoenix_html, "~> 3.0"},
 
       # Plugs
-      {:plug_assign, "~> 1.0.0"},
-      {:canary, "~> 1.1.0"},
+      {:plug_assign, "~> 2.0"},
+      {:canada, "~> 2.0.0", override: true},
+      {:canary, github: "runhyve/canary"},
       {:corsica, "~> 2.0"},
-      {:plug_cowboy, "~> 2.0"},
-      {:cowboy, "~> 2.0"},
-      {:plug, "1.14.2"},
+      {:bandit, "~> 1.0"},
+      {:plug, "~> 1.14"},
       {:plug_canonical_host, "~> 2.0"},
 
       # Database
@@ -58,6 +58,9 @@ defmodule Accent.Mixfile do
 
       # Spelling interop with Java runtime
       {:exile, "~> 0.7"},
+
+      # Cache
+      {:cachex, "~> 3.6"},
 
       # Phoenix data helpers
       {:phoenix_ecto, "~> 4.0"},
@@ -75,7 +78,7 @@ defmodule Accent.Mixfile do
       {:httpoison, "~> 1.1"},
       {:gettext, "~> 0.20.0"},
       {:csv, "~> 2.0"},
-      {:php_assoc_map, "~> 0.5"},
+      {:php_assoc_map, "~> 3.0"},
       {:jason, "~> 1.2", override: true},
       {:erlsom, "~> 1.5"},
       {:xml_builder, "~> 2.0"},
@@ -93,9 +96,10 @@ defmodule Accent.Mixfile do
       {:sentry, "~> 7.0"},
 
       # Mails
-      {:bamboo, "~> 2.0"},
+      {:bamboo, "~> 2.3", override: true},
+      {:tls_certificate_check, "~> 1.21"},
       {:bamboo_phoenix, "~> 1.0"},
-      {:bamboo_smtp, "~> 4.0"},
+      {:bamboo_smtp, "~> 4.2"},
 
       # Events handling
       {:oban, "~> 2.13"},
