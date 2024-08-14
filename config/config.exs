@@ -29,6 +29,7 @@ config :accent, Accent.Endpoint,
   pubsub_server: Accent.PubSub
 
 config :accent, Oban,
+  prefix: get_env("DATABASE_SCHEMA") || "public",
   plugins: [Oban.Plugins.Pruner],
   queues: [hook: 10, operations: 10],
   repo: Accent.Repo

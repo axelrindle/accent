@@ -1,0 +1,66 @@
+diff --git a/config/config.exs b/config/config.exs
+--- config/config.exs
++++ config/config.exs
+@@ -28,8 +28,9 @@
+   render_errors: [accepts: ~w(json)],
+   pubsub_server: Accent.PubSub
+ 
+ config :accent, Oban,
++  prefix: get_env("DATABASE_SCHEMA") || "public",
+   plugins: [Oban.Plugins.Pruner],
+   queues: [hook: 10, operations: 10],
+   repo: Accent.Repo
+ 
+diff --git a/priv/repo/migrations/20200509183314_add_oban_jobs_table.exs b/priv/repo/migrations/20200509183314_add_oban_jobs_table.exs
+--- priv/repo/migrations/20200509183314_add_oban_jobs_table.exs
++++ priv/repo/migrations/20200509183314_add_oban_jobs_table.exs
+@@ -2,13 +2,13 @@
+   @moduledoc false
+   use Ecto.Migration
+ 
+   def up do
+-    Oban.Migrations.up()
++    Oban.Migrations.up(prefix: get_env("DATABASE_SCHEMA") || "public")
+   end
+ 
+   # We specify `version: 1` in `down`, ensuring that we'll roll all the way back down if
+   # necessary, regardless of which version we've migrated `up` to.
+   def down do
+-    Oban.Migrations.down(version: 1)
++    Oban.Migrations.down(version: 1, prefix: get_env("DATABASE_SCHEMA") || "public")
+   end
+ end
+diff --git a/priv/repo/migrations/20210209121448_upgrade_oban_jobs_to_v10.exs b/priv/repo/migrations/20210209121448_upgrade_oban_jobs_to_v10.exs
+--- priv/repo/migrations/20210209121448_upgrade_oban_jobs_to_v10.exs
++++ priv/repo/migrations/20210209121448_upgrade_oban_jobs_to_v10.exs
+@@ -2,11 +2,11 @@
+   @moduledoc false
+   use Ecto.Migration
+ 
+   def up do
+-    Oban.Migrations.up(version: 10)
++    Oban.Migrations.up(version: 10, prefix: get_env("DATABASE_SCHEMA") || "public")
+   end
+ 
+   def down do
+-    Oban.Migrations.down(version: 9)
++    Oban.Migrations.down(version: 9, prefix: get_env("DATABASE_SCHEMA") || "public")
+   end
+ end
+diff --git a/priv/repo/migrations/20220829190204_update_oban_2_13.exs b/priv/repo/migrations/20220829190204_update_oban_2_13.exs
+--- priv/repo/migrations/20220829190204_update_oban_2_13.exs
++++ priv/repo/migrations/20220829190204_update_oban_2_13.exs
+@@ -2,11 +2,11 @@
+   @moduledoc false
+   use Ecto.Migration
+ 
+   def up do
+-    Oban.Migrations.up()
++    Oban.Migrations.up(prefix: get_env("DATABASE_SCHEMA") || "public")
+   end
+ 
+   def down do
+-    Oban.Migrations.down()
++    Oban.Migrations.down(prefix: get_env("DATABASE_SCHEMA") || "public")
+   end
+ end
